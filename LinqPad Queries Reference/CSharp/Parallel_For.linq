@@ -16,6 +16,7 @@ for(int i = 0; i < 30_000; i++){
 Stopwatch sp = new Stopwatch();
 sp.Start();
 
+//not thread safe
 Parallel.For(0, csvs.Count, (i) =>
 {
 	csvs[i] = csvs[i] * i + i;
