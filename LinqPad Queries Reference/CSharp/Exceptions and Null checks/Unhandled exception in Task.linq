@@ -4,6 +4,9 @@
 
 
 //Unhandled exception in Task
+// 4 options to solve. 1 - Wait the task, 2 - Use GetAwaiter(), 3 - check if task is faulted, 4 - make all async and await task.
+// So depends on the use case 
+
 void Main()
 {
 	try
@@ -13,13 +16,18 @@ void Main()
 		
 		/*
 		t.Wait();  -- This will cause the exception to be passed to the calling thread
-		BUT this will also block
-		*/	
+		*/
+		
+		//option 2
+		//var awaiter = t.GetAwaiter();
+		//awaiter.GetResult();
 	
 		while (true)
 		{
 			Console.WriteLine("All is good, no exceptions here!");
 			Task.Delay(150).Wait();
+			
+			// option 3
 			if (t.IsFaulted) {throw t.Exception;}
 		}
 	}

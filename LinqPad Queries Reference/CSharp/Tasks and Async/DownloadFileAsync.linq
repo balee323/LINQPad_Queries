@@ -35,7 +35,10 @@ private async Task DownloadToFile(string url, string filePath)
 	Console.WriteLine(filePath);
 	
 	var webClient = new System.Net.WebClient();
+	
 	var uri = new Uri(url);
 	var data = await webClient.DownloadDataTaskAsync(uri);
+		
 	await File.WriteAllBytesAsync(filePath, data);
-}
+	
+	await File.WriteAllBytesAsync(

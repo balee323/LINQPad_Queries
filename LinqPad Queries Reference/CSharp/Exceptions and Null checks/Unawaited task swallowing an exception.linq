@@ -6,34 +6,30 @@ void Main()
 {
 	try
 	{
+		//action delegate
 		Action doStuff = () =>
 		{
 			DoingWork(); //not awaited
 		};
 		
-		ExecuteThings(doStuff);
+		//Invoke the delegate
+		doStuff.Invoke();
 		
+		Thread.Sleep(1000);
+		Console.WriteLine("All done, nothing to see here.  No problems :)");
 	}
 	catch (Exception ex){
 		;
 		Console.WriteLine("Exception Caught");
 		Console.WriteLine(ex.Message);
-	}	
-	
-	Console.WriteLine("done");
+	}			
 }
 
-
-private void ExecuteThings(Action someAction){
-
-	someAction.Invoke();
-	
-}
 
 
 private async Task DoingWork()
 {
-	throw new Exception("opps");
+	//** notice exception here!
+	throw new Exception("opps"); 
 	Console.WriteLine("doing work");
 }
-// You can define other methods, fields, classes and namespaces here
