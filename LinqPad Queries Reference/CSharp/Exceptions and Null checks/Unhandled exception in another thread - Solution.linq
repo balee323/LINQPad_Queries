@@ -22,6 +22,7 @@
 				Console.WriteLine("All is good, no exceptions here!");
 				Task.Delay(300).Wait();
 				
+				//here's the check
 				if(_isThreadException){
 				Console.WriteLine("Exception in thread detected.");
 					break;
@@ -51,12 +52,13 @@
 		}
 		catch
 		{
+			//evoke the event and the handler in main thread will pick up.
 			handler.Invoke(this, new EventArgs());
 		
 		}
 	}
 	
-	
+	//Event handler	
 	void HandleExceptionInThreadOccurred(object sender, EventArgs e)
 	{
 		_isThreadException = true;
